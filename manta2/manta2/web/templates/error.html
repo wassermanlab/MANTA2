@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+  <title>{{ title }}></title>
+</head>
+
+<body>
+  {% include 'navigation.html' %}
+
+  <h1>{{ header }}</h1>
+
+  <h3>The following error(s) occured</h3>
+
+  {% for e in errors: %}
+    <p class="error">{{ e|safe }}</p>
+  {% endfor %}
+
+  <br>
+  <br>
+  <form name="error" enctype="multipart/form-data" action="{{ url_for('snv_input') }}" method="get">
+    <input type="submit" name="Submit" value="Back to start">
+  </form>
+</body>
+</html>

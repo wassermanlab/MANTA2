@@ -1,0 +1,4 @@
+graft manta2/web/templates
+graft manta2/web/static
+graft manta2/web/upload
+graft manta2/web/download

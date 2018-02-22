@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+  <title>{{ title }}></title>
+</head>
+
+<body>
+  <!--
+  {% include 'navigation.html' %}
+  -->
+  {% include 'title_bar.html' %}
+
+  <form name="snv_input" enctype="multipart/form-data" action="results" method="post">
+
+    <p class=info>
+    The <b>M</b>ongoDB for the <b>an</b>alysis of <b>t</b>ranscription factor (TF)-binding site (TFBS) <b>a</b>lterations (MANTA) was originally created in 2015 to study the impact of regulatory mutations in B-cell lymphomas <a href="https://doi.org/10.1186/s13059-015-0648-7" target=_blank>(Mathelier et al. 2015)</a>. The second release of the database, MANTA2, stores genome-wide TFBS predictions from <a href="http://jaspar.genereg.net" target=_blank>JASPAR</a> profiles in ChIP-seq peak-regions from the <a href="http://remap.cisreg.eu" target=_blank>ReMap</a> database, as well as the impact on TF-binding of all potential mutations overlapping these binding sites by means of relative score changes. The current database build houses ~50 million TFBS predictions for 224 TFs (represented by 235 JASPAR profiles) covering up to 255,918,025 bp (~8%) of the human genome (<a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26" target=_blank>build GRCh38</a>).
+    </p>
+
+    <h1>{{ header }}</h1>
+    
+    <h4>Please provide an SNV file. The file should be in <b>VCF</b>, <b>GFF</b> or <b>BED</b> format <a href="{{ url_for('static', filename='help.html', _anchor="snv_input") }}" target="_help">[help]</a></h4>
+
+    {% if warnings %}
+      {% for w in warnings %}
+        <p class="warning">{{w}}</p>
+      {% endfor %}
+    {% endif %}
+
+    {% if ask_for_filetype %}
+      Select SNV input file format&nbsp;<a href="{{ url_for('static', filename='help.html', _anchor="snv_input") }}" target="_help">[help]</a>:<br>
+      <input type="radio" name="snv_filetype" value="vcf" checked>VCF<br>
+      <input type="radio" name="snv_filetype" value="gff">GFF<br>
+      <input type="radio" name="snv_filetype" value="bed">BED<br>
+      <br>
+    {% endif %}
+    
+    <!--
+    Paste SNVs:
+    <br>
+    <table>
+      <tr>
+        <td>
+          <textarea name="snv_paste" rows="10" cols="80" wrap="soft"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td align="right">
+          <input type="button" name="clear_snv_paste" value="Clear"
+              onClick="{snv_input.snv_paste.value=''}">
+        </td>
+      </tr>
+    </table>
+
+    <b>OR</b>
+    -->
+    <b>Upload</b> SNV file: &nbsp;<input type="file" name="snv_upload" size="60"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" name="clear_snv_upload_file" value="Clear"
+          onClick="{snv_input.snv_upload.value=''}">
+
+    <br>
+    <br>
+    <br>
+    <input type="submit" name="Submit" value="Submit">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!--
+    <input type="reset" name="Reset" value="Reset">
+    -->
+    <br>
+  </form>
+</body>
+</html>

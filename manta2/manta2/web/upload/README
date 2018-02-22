@@ -1,0 +1,1 @@
+This directory is where the variant files uploaded to the web server are temporarily stored. The web server creates temporary subdirectories to stroe the actual variant data files. The contents of this directory should not be under revision control but we do want to preserve the directory structure. This README also serves the latter purpose.

@@ -1,0 +1,1 @@
+This directory is where TFBS affected by SNV result files created by the web server are temporarily stored for download. The web server created temporary subdirectories to store the actual result files. The contents of this directory should not be under revision control but we do want to preserve the directory structure. This README also serves this latter purpose.

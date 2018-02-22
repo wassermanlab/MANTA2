@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+  <script type="text/javascript" src="/static/sorttable.js"></script>
+
+  <title>{{ title }}</title>
+</head>
+<body>
+  <!--
+  {% include 'navigation.html' %}
+  -->
+  {% include 'title_bar.html' %}
+
+  <h1>{{ header }}</h1>
+  
+  <h4>TFBS impacted by the provided SNVs <a href="{{ url_for('static', filename='help.html', _anchor="results") }}" target="_help">[help]</a></h4>
+
+  <form name="download" enctype="multipart/form-data" action="{{results_rel_url}}" method="post">
+    <input type="submit" name="Submit" value="Download">&nbsp;
+    the TFBS SNV impact results as a <b>tab-delimited file</b>. Your results will be available for download for <b>{{ num_days }} days</b>.
+    <br>
+    <br>
+    To retrieve your results at a later date, copy/paste the URL below (e.g. right-click and "Copy link address").
+    <br><a href="{{results_rel_url}}" _target=blank>{{results_full_url}}</a>.<br>
+  </form>
+
+  <br>
+  <p align="center">
+  <form name="backtostart1" enctype="multipart/form-data" action="{{ url_for('snv_input') }}" method="get">
+    <input type="submit" name="Submit" value="Back to start"><br>
+  </form>
+  </p>
+  Click column headers to sort by that column&nbsp;
+
+  <br>
+  <table id=snv_impacts class="sortable" cellpadding="2" cellspacing="0">
+    <tr><th align=left>Chromosome</th><th>Position</th><th>Ref Allele</th><th>Alt Allele</th><th>SNV ID</th><th>TF</th><th>JASPAR ID</th><th>Ref TFBS Start</th><th>Ref TFBS End</th><th>Ref TFBS Strand</th><th>Ref Abs Score</th><th>Ref Rel Score</th><th>Alt TFBS Start</th><th>Alt TFBS End</th><th>Alt TFBS Strand</th><th>Alt Abs Score</th><th>Alt Rel Score</th><th>Impact Score</th></tr>
+
+    {% for si in snv_impacts %}
+      <tr>
+        <td>{{ si.chrom }}</td>
+        <td>{{ si.position }}</td>
+        <td>{{ si.ref_allele }}</td>
+        <td>{{ si.alt_allele }}</td>
+        <td>{{ si.snv_id }}</td>
+        <td>{{ si.jaspar_tf_name }}</td>
+        <td>{{ si.matrix_id }}</td>
+        <td>{{ si.start1 }}</td>
+        <td>{{ si.end1 }}</td>
+        <td>{{ si.strand1 }}</td>
+        <td>{{ si.abs_score1 }}</td>
+        <td>{{ si.rel_score1 }}</td>
+        <td>{{ si.start2 }}</td>
+        <td>{{ si.end2 }}</td>
+        <td>{{ si.strand2 }}</td>
+        <td>{{ si.abs_score2 }}</td>
+        <td>{{ si.rel_score2 }}</td>
+        <td>{{ si.impact }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% if warnings %}
+    <br>
+    Some issues were detected while searching for SNV impacts:<br>
+    {% for w in warnings %}
+      <p class="warning">{{ w }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <!--
+  <br>
+  Download SNV impacts as a tab delimited text file <a href="{{ snv_impacts_file_url }}">here</a>
+  -->
+
+  <br>
+  <form name="backtostart2" enctype="multipart/form-data" action="{{ url_for('snv_input') }}" method="get">
+    <input type="submit" name="Submit" value="Back to start">
+  </form>
+  <br>
+</body>
+</html>
