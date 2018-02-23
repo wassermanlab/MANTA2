@@ -3,20 +3,20 @@ This folder encloses all the scripts to process the JASPAR TFBS predictions and 
 ## Configuration
 Set the paths below for data processing.
 
-`HG38_GENOME_FILE="/path/to/the/whole/reference/genome/fasta/file"`
-`JASPAR_PWM_FOLDER="/path/to/where/all/jaspar/pwms/needed/are/stored"`
-`INITIAL_DATA_FOLDER="/path/to/the/original/BED/files"`
-`RAW_DATA_FOLDER="/path/to/storage/of/unzipped/bed/files"`
-`SORTED_BED_FOLDER="/path/to/where/BED/data/ready/for/processing/should/be"`
-`ENCODE_PEAKS_FOLDER="/path/to/the/ENCODE/peaks"`
-`GEO_PEAKS_FOLDER="/path/to/the/GEO/peaks"`                                 
-`PEAKS_FOLDER="/path/to/peak/storing"` (temporary; folders will be moved at step 3)
-`SPLIT_PEAKS_FOLDER="/path/to/where/peak/data/ready/for/processing/should/be"`
-`PROCESSED_PEAKS_FOLDER="/path/to/where/the/processed/peaks/should/be/stored"`
-`RESCORED_TFBS_FOLDER="/path/to/where/the/rescored/peaks/should/be/stored"`
-`INTERSECTED_FOLDER="/path/to/where/the/result/of/intersected/peaks/and/tfbs/should/be/stored"`
-`AGGREGATED_FOLDER="/path/to/where/the/aggregated/results/from/the/intersection/should/be/stored"`
-`SORTED_RESULT_FOLDER="/path/to/wehre/the/final/results/are/to/be/stored"`
+*`HG38_GENOME_FILE="/path/to/the/whole/reference/genome/fasta/file"`
+*`JASPAR_PWM_FOLDER="/path/to/where/all/jaspar/pwms/needed/are/stored"`
+*`INITIAL_DATA_FOLDER="/path/to/the/original/BED/files"`
+*`RAW_DATA_FOLDER="/path/to/storage/of/unzipped/bed/files"`
+*`SORTED_BED_FOLDER="/path/to/where/BED/data/ready/for/processing/should/be"`
+*`ENCODE_PEAKS_FOLDER="/path/to/the/ENCODE/peaks"`
+*`GEO_PEAKS_FOLDER="/path/to/the/GEO/peaks"`
+*`PEAKS_FOLDER="/path/to/peak/storing"` (temporary; folders will be moved at step 3)
+*`SPLIT_PEAKS_FOLDER="/path/to/where/peak/data/ready/for/processing/should/be"`
+*`PROCESSED_PEAKS_FOLDER="/path/to/where/the/processed/peaks/should/be/stored"`
+*`RESCORED_TFBS_FOLDER="/path/to/where/the/rescored/peaks/should/be/stored"`
+*`INTERSECTED_FOLDER="/path/to/where/the/result/of/intersected/peaks/and/tfbs/should/be/stored"`
+*`AGGREGATED_FOLDER="/path/to/where/the/aggregated/results/from/the/intersection/should/be/stored"`
+*`SORTED_RESULT_FOLDER="/path/to/wehre/the/final/results/are/to/be/stored"`
 
 ## Intersect JASPAR TFBS predictions w/ ReMap ChIP-seq regions
 
