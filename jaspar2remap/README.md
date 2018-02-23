@@ -1,6 +1,4 @@
-#This folder encloses all the scripts to process the JASPAR TFBS predictions and ReMap ChIP-seq datasets in preparation for MANTA2.
-#Note that the commands included within this `README.md` file are merely indicative, with some parts being pure pseudo-code.
-#Note that this `README.md` is prepared to be executed as a bash script.
+#This folder encloses all the scripts to process the JASPAR TFBS predictions and ReMap ChIP-seq datasets in preparation for MANTA2. Note that the commands included within this `README.md` file are merely indicative, with some parts being pure pseudo-code. Note that this `README.md` is prepared to be executed as a bash script.
 
 ## Configuration
 #Set the paths below for data processing:
