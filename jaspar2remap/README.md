@@ -3,9 +3,7 @@ This file contains all the processing steps for the MANTA2 data preparation. Not
 ## Configuration
 Set the paths below for data processing.
 
-HG38_GENOME_FILE="/path/to/the/whole/reference/genome/fasta/file"
-
-JASPAR_VERTEBRATE_PROFILES="/path/to/where/all/jaspar/core/vertebrates/profiles/are/stored"
+`HG38_GENOME_FILE="/path/to/the/whole/reference/genome/fasta/file"
 JASPAR_PWM_FOLDER="/path/to/where/all/jaspar/pwms/needed/are/stored"
 
 INITIAL_DATA_FOLDER="/path/to/the/original/BED/files"
@@ -22,90 +20,63 @@ RESCORED_TFBS_FOLDER="/path/to/where/the/rescored/peaks/should/be/stored"
 
 INTERSECTED_FOLDER="/path/to/where/the/result/of/intersected/peaks/and/tfbs/should/be/stored"
 AGGREGATED_FOLDER="/path/to/where/the/aggregated/results/from/the/intersection/should/be/stored"
-SORTED_RESULT_FOLDER="/path/to/wehre/the/final/results/are/to/be/stored"
+SORTED_RESULT_FOLDER="/path/to/wehre/the/final/results/are/to/be/stored"`
 
-## Intersect JASPAR w/ ReMap
+## Intersect JASPAR TFBS predictions w/ ReMap ChIP-seq regions
 
-### Step 1: Download JASPAR TFBS predictions
-JASPAR genome-wide TFBS predictions as tab-separated values (TSV) files for the hg38 assembly can be downloaded as follows: `bash get_JASPAR_TFBS_predictions.sh $JASPAR_PWM_FOLDER`.
+### Step 1: Get TFBS predictions
+For each profile in the JASPAR CORE vertebrates collection: 1) download TFBS predictions on the hg38 genome assembly as tab-separated values files; 2) reformat the TSV file to BED; and 3) compress the resulting BED file.
 
-### Step 2: Reformat TSV to BED
-JASPAR genome-wide TFBS predictions as tab-separated values files for the hg38 assembly can be downloaded as follows: `bash get_JASPAR_TFBS_predictions.sh`. Note that the bash script will create a folder (*i.e.*  `./JASPAR_TFBS_predictions`) in which to store the downloaded profiles.
+`bash get_JASPAR_TFBS_predictions.sh $INITIAL_DATA_FOLDER`
 
-# unzip and sort the initial BED files (from Oriol)
-#
-#dependencies: sort_launcher.sh
-#              sort_bed.sh
-# command: 
-bash sort_launcher.sh $INITIAL_DATA_FOLDER sort_bed.sh $RAW_DATA_FOLDER $SORTED_BED_FOLDER
- 
-#### STEP 2 ######
-# copy the associated datasets (only Remap 2018) 
-#
-#dependencies: copy_folders_based_on_file.sh
-#              encode_datasets_for_manta.txt
-#              geo_datasets_for_manta.txt
-#commands:
+### Step 2: Get ChIP-seq datasets
+Marius is to provide the scripts that download the data, and provide a description.
+
+`STEP 2
+copy the associated datasets (only Remap 2018) 
+
+dependencies: copy_folders_based_on_file.sh
+              encode_datasets_for_manta.txt
+              geo_datasets_for_manta.txt
+commands:
 bash copy_folders_based_on_file.sh $ENCODE_PEAKS_FOLDER encode_datasets_for_manta.txt ENCODE $PEAKS_FOLDER/ENCODE
 
 bash copy_folders_based_on_file.sh $GEO_PEAKS_FOLDER geo_datasets_for_manta.txt GEO $PEAKS_FOLDER/GEO
+`
+### Step 3: Unzip and sort the initial BED files
 
-#### STEP 3 #####
-# split the data in folders based on the TF name
-# 
-# dependencies: split_by_tf_name.sh
-#
-#command: 
-bash split_by_tf_name.sh $PEAKS_FOLDER/ENCODE ENCODE $SPLIT_PEAKS_FOLDER
+`bash sort_launcher.sh $INITIAL_DATA_FOLDER sort_bed.sh $RAW_DATA_FOLDER $SORTED_BED_FOLDER`
 
-bash split_by_tf_name.sh $PEAKS_FOLDER/GEO GEO $SPLIT_PEAKS_FOLDER
+### Step 4: Split the ChIP-seq data per TF
 
-#### STEP 4 ######
-# launch processing of peak files in parallel:
-# i) concatenated all bed in a TF folder
-# ii) sorted the resulting file
-# iii) merge the peaks
-#
-#dependencies: process_peak_files.sh
-#               process_launcher.sh 
-#
-#command:               
-bash process_launcher $SPLIT_PEAKS_FOLDER process_peak_files.sh $PROCESSED_PEAKS_FOLDER
+`bash split_by_tf_name.sh $PEAKS_FOLDER/ENCODE ENCODE $SPLIT_PEAKS_FOLDER
+bash split_by_tf_name.sh $PEAKS_FOLDER/GEO GEO $SPLIT_PEAKS_FOLDER`
 
-#### STEP 5 #####
-# rescore the MANTA TFBSs using a modified version of the scoring algorithm: the backward score is ignored
-#
-# dependencies: sequence_scoring_pwm.sh
-#               pwm_search.h
-#               pwm_searchPFF
-#
-# command:
-bash sequence_scoring_pwm.sh $SORTED_BED_FOLDER pwm_searchPFF $JASPAR_PWM_FOLDER $HG38_GENOME_FILE $RESCORED_TFBS_FOLDER
+### Step 5: Intersect TFBS predictions with ChIP-seq regions
+For each ChIP-seq region: 1) concatenated all bed in a TF folder; 2) sorted the resulting file; and 3) merge the peaks. The intesected TFBS predictions conform the MANTA database. <--- I don't get this step, could you please check the wording?
 
-#### STEP 6 #####
-#intersect all the coresponding peaks with each of the entries in each MANTA TFBS files. 
-#
-#dependencies: get_intersection.sh
-#
-#command:
-bash get_intersection_tfbs.sh $RESCORED_TFBS_FOLDER $PEAKS_FOLDER/ENCODE $PEAKS_FOLDER/GEO $INTERSECTED_FOLDER
+`bash process_launcher $SPLIT_PEAKS_FOLDER process_peak_files.sh $PROCESSED_PEAKS_FOLDER`
 
-#### STEP 7 #####
-# aggregate each of the resulting files to put all intersecting datasets on one line
-#
-# dependencies: aggregate_datasets.R
-#
-# command:
-R
+### Step 6: Re-score the TFBS predictions
+This step re-scores the MANTA TFBS predictions using a modified version of the scoring algorithm (the backward score is ignored).
+
+`bash sequence_scoring_pwm.sh $SORTED_BED_FOLDER pwm_searchPFF $JASPAR_PWM_FOLDER $HG38_GENOME_FILE $RESCORED_TFBS_FOLDER`
+
+### Step 7: Intersect
+Please write description: Intersect ChIP-seq peaks with each of the entries in each MANTA TFBS files. 
+
+`bash get_intersection_tfbs.sh $RESCORED_TFBS_FOLDER $PEAKS_FOLDER/ENCODE $PEAKS_FOLDER/GEO $INTERSECTED_FOLDER`
+
+### Step 8: DESCRIPTION
+Please write description: Aggregate each of the resulting files to put all intersecting datasets on one line
+
+`R
 source("aggregate_datasets.R")
 aggregate_datasets(input_folder = $INTERSECTED_FOLDER, output_folder = $AGGREGATED_FOLDER)
-q()
+q()`
 
-#### STEP 8 #####
-#sort the result files
-#
-#dependencies: sort_bed_simple.sh
-#
-#command:
-bash sort_bed_simple.sh $AGGREGATED_FOLDER $SORTED_RESULT_FOLDER
+### Step 9: Sort blablabla
+Please write description.
+
+`bash sort_bed_simple.sh $AGGREGATED_FOLDER $SORTED_RESULT_FOLDER`
 
