@@ -1,0 +1,5 @@
+Chrom	Position	Ref_allele	Alt_allele	SNV_ID	TF_name	JASPAR_ID	Ref_TFBS_start	Ref_TFBS_end	Ref_TFBS_strand	Ref_TFBS_abs_score	Ref_TFBS_rel_score	Alt_TFBS_start	Alt_TFBS_end	Alt_TFBS_strand	Alt_TFBS_abs_score	Alt_TFBS_rel_score	Impact_score
+19	277715	G	C	.	FOXO1	MA0480.1	277709	277719	-	4.540	81.1%	277709	277719	-	12.188	92.8%	2.759
+M	152	T	C	.	MEF2C	MA0497.1	152	166	-	6.219	81.6%	152	166	-	3.330	77.7%	-0.273
+M	152	T	C	.	SP2	MA0516.1	138	152	+	7.769	82.9%	138	152	+	8.980	84.6%	1.132
+M	152	T	C	.	OTX2	MA0712.1	145	152	+	3.072	81.2%	145	152	+	2.738	80.6%	0.360
