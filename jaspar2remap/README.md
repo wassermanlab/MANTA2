@@ -79,7 +79,7 @@ aggregate_datasets(input_folder = $INTERSECTED_FOLDER, output_folder = $AGGREGAT
 q()
 ```
 
-### Step 8: Sort the results of the aggregation - optional
+### Step 8: Sort the results of the aggregation (optional)
 The resulting BED files can be sorted by chromosome name and chromosome start (this step is optional).
 
 `bash sort_bed_simple.sh $AGGREGATED_FOLDER $SORTED_RESULT_FOLDER`
