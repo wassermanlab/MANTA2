@@ -6,7 +6,7 @@ The repository is organized as follows:
 * The `examples` folder contains a shell script (*i.e.* `get_VCF_example.sh`) to generate a variant file in VCF format
 * The `jaspar2remap` folder contains the scripts and instructions to process the JASPAR TFBS predictions and ReMap ChIP-seq data
 * The `manta2` folder contains the scripts contains the scripts related to loading the data to the MongoDB system and the web interface of MANTA2
-* The `search_manta2.py` script provides programmatic access to MANTA2 (both local and hosted at the Wasserman Lab)
+* The symbolic link to the `search_manta2.py` script provides programmatic access to MANTA2 (both local and hosted at the Wasserman Lab)
 
 ## Dependencies
 MANTA2 requires the following dependencies:
