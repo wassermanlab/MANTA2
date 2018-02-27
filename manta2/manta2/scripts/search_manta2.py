@@ -9,8 +9,8 @@ import bson
 
 from pymongo import MongoClient
 
-script_path = os.path.dirname(os.path.abspath(__file__))
-lib_path = os.path.abspath(os.path.join(script_path, os.pardir))
+script_path = os.path.dirname(os.path.realpath(__file__))
+lib_path = os.path.join(os.path.abspath(script_path), os.pardir)
 sys.path.append(lib_path)
 
 import fileIO
