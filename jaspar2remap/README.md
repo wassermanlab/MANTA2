@@ -5,9 +5,6 @@ The scripts present in this folder have been developed to be used in a UNIX OS (
 * `gzip`, `tr`, `awk` and `sed`
 * `R` statistical environment (>3.0)
 
-## Requirements 
- As software dependencies, the system should have support for . It should have the . The base packages should suffice.
-
 ## Configuration
 Set the paths below for data processing. The scripts will produce output at most of the steps listed below. **Important**: ensure that the **genome file** comes from the `hg38` human genome assembly.
 
