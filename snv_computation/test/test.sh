@@ -1,0 +1,1 @@
+bash ../compute_snv_impacts_launcher_allalt.sh -b MA0002.2_RUNX1_GSE17954.TFBS.bed -p MA0002.2.pfm -g /storage/mathelierarea/raw/UCSC/hg38/Sequence/WholeGenomeFasta/genome.fa -s /lsc/bedtools2/genomes/human.hg38.genome -o ./results
