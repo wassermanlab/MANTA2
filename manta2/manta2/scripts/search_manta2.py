@@ -133,15 +133,15 @@ if __name__ == '__main__':
     fileIO.write_snv_impacts(out_file, snv_impacts)
 
     if var_errors or snv_errors:
-        print "\nProblems were detected while searching the MANTA2 database:"
+        print("\nProblems were detected while searching the MANTA2 database:")
 
     if var_errors:
         for err in var_errors:
-            print "\n{}".format(err)
+            print("\n{}".format(err))
 
     if snv_errors:
         for err in snv_errors:
-            print "\n{}".format(err)
+            print("\n{}".format(err))
 
     if out_file and out_file != '-':
-        print "\nSNV impact results written to file {}.\n".format(out_file)
+        print("\nSNV impact results written to file {}.\n".format(out_file))
