@@ -11,7 +11,7 @@ The repository is organized as follows:
 ## Dependencies
 MANTA2 requires the following dependencies:
 * [MongoDB](https://www.mongodb.com) (≥2.4; version 3.4 or higher is strongly recommended)
-* Python (>2.7) with the *flask* and *pymongo* libraries
+* `Python` (>2.7) with the [`Flask`](http://flask.pocoo.org) and [`PyMongo`](https://api.mongodb.com/python/current/) libraries
 
 ## Installation
 To create a local build of MANTA2, follow the next steps:

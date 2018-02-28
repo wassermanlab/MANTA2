@@ -1,8 +1,8 @@
-This folder contains the scripts to process the JASPAR 2018 TFBS predictions and ReMap 2018 ChIP-seq peaks in preparation for the MANTA2 database. **Note** that the steps/commands included within this `README.md` file are merely indicative, with some parts being pure pseudo-code.
+This folder contains the scripts to `process the JASPAR 2018 TFBS predictions and ReMap 2018 ChIP-seq peaks` in preparation for the MANTA2 database. **Note** that the steps/commands included within this `README.md` file are merely indicative, with some parts being pure pseudo-code.
 
 ## Dependencies
 The scripts present in this folder have been developed to be used in a UNIX OS (for Microsoft Windows, the system should include support for Bash Unix Shell).
-* The bash commands `gzip`, `tr`, `awk` and `sed`
+* `gzip`, `tr`, `awk` and `sed`
 * `R` statistical environment (>3.0)
 
 ## Requirements 
