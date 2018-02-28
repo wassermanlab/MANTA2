@@ -1,11 +1,12 @@
 # MANTA2
 The **M**ongoDB for the **AN**alysis of **T**ranscription factor (TF)-binding site (TFBS) **A**lterations (MANTA) was originally created in 2015 to study the impact of regulatory mutations in B-cell lymphomas [(Mathelier et al. 2015)](https://doi.org/10.1186/s13059-015-0648-7). The database stores TFBSs predicted in the human genome by combining ChIP-seq regions from [ReMap](http://remap.cisreg.eu) and [JASPAR](http://jaspar.genereg.net) profiles, as well as the potential impact scores for all possible single nucleotide variants (SNVs) at these TFBSs. The second release of the database, MANTA2, houses >48 million TFBS predictions for 224 TFs and covers up to 255,918,025 bp (~8%) of the human genome ([hg38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26)).
 
-## Description
+## Content
 The repository is organized as follows:
 * The `examples` folder contains a shell script (*i.e.* `get_VCF_example.sh`) to generate a variant file in VCF format
 * The `jaspar2remap` folder contains the scripts and instructions to process the JASPAR TFBS predictions and ReMap ChIP-seq data
-* The `manta2` folder contains the scripts contains the scripts related to loading the data to the MongoDB system and the web interface of MANTA2
+* The `manta2` folder contains the scripts related to loading the data to the MongoDB system and the web interface of MANTA2
+* The `snv_computation` folder contains the scripts related to the computation of SNV scores
 * The symbolic link to the `search_manta2.py` script provides programmatic access to MANTA2 (both local and hosted at the Wasserman Lab)
 
 ## Dependencies
