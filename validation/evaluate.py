@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 import os, sys, re
-import matplotlib.pyplot as plot
+from matplotlib.patches import Patch
+import matplotlib.pyplot as plt
 import pandas
 from scipy.stats import pearsonr
 
@@ -79,16 +80,20 @@ if not os.path.exists(data_frame_file):
 
 # Make figure #
 data_frame = pandas.read_csv(data_frame_file)
-#df = data_frame[(data_frame["cell"]=="gm12878") & (data_frame["asb"]=="ASB")] # filter data frame w/ quality data
-fig = plot.figure(tight_layout=True)
+fig = plt.figure(tight_layout=True)
 ax = fig.add_subplot(111)
 # Plot scatter #
-ax.scatter(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist(), alpha=0.5)
-correlation = pearsonr(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist())
-#ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), alpha=0.5)
-#correlation = pearsonr(df["allelic_imbalance"].tolist(), df["impact_score"].tolist())
-# Add text #
-ax.text(0.2, 0.95, "R = %.3f (%.1e)" % (correlation[0], correlation[1]), horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
+df = data_frame[(data_frame["asb"]=="nonASB")] # nonASB events
+ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#4477AA", alpha=0.5)
+df = data_frame[(data_frame["asb"]=="ASB")] # ASB events
+ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#CC6677", alpha=0.5)
+# Get correlation #
+corr = pearsonr(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist())
+# Add legend #
+h = [Patch(facecolor="#CC6677", edgecolor=None, label="ASB"),
+     Patch(facecolor="#4477AA", edgecolor=None, label="nonASB"),
+     Patch(facecolor="white", edgecolor=None, label="R = %.3f (%.1e)" % (corr[0], corr[1]))]
+ax.legend(handles=h, frameon=False, loc="best")
 # Set x/y labels #
 ax.set_xlabel("allelic imbalance (ChIP-seq)")
 ax.set_ylabel("impact score (MANTA2)")
@@ -99,4 +104,4 @@ ax.set_aspect((x1 - x0) / (y1 - y0))
 # Save figure #
 fig.savefig("%s.svg" % figure_file, dpi=300, format='svg', transparent=True)
 fig.savefig("%s.png" % figure_file, dpi=300, format='png', transparent=True)
-plot.close("all") # closes all plots
+plt.close("all") # closes all plots
