@@ -7,6 +7,7 @@ The repository is organized as follows:
 * The `jaspar2remap` folder contains the scripts that were used to merge JASPAR TFBS predictions with ReMAP ChIP-seq peaks along with some instructions on how to use them
 * The `manta2` folder contains the scripts related to loading the data to the MongoDB system and the web interface of MANTA2
 * The `snv_computation` folder contains the scripts used to compute the impact scores of the SNVs within the MANTA2 TFBSs and instructions on how to use them
+* The `validation` folder contains the scripts used for the external validation of MANTA2 on allelic imbalance data
 * The symbolic link to the `search_manta2.py` script provides programmatic access to MANTA2 (both locally and hosted at the Wasserman Lab)
 
 ## Dependencies
