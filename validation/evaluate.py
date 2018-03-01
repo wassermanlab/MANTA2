@@ -90,10 +90,10 @@ ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color=
 # Get correlation #
 corr = pearsonr(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist())
 # Add legend #
-h = [Patch(facecolor="#CC6677", edgecolor=None, label="ASB"),
-     Patch(facecolor="#4477AA", edgecolor=None, label="nonASB"),
-     Patch(facecolor="white", edgecolor=None, label="R = %.3f (%.1e)" % (corr[0], corr[1]))]
-ax.legend(handles=h, frameon=False, loc="best")
+handles = [Patch(color="#CC6677", label="ASB"),
+           Patch(color="#4477AA", label="nonASB"),
+           Patch(color="none", label="R = %.3f (%.1e)" % (corr[0], corr[1]))]
+ax.legend(handles=handles, frameon=False, loc="best")
 # Set x/y labels #
 ax.set_xlabel("allelic imbalance (ChIP-seq)")
 ax.set_ylabel("impact score (MANTA2)")
