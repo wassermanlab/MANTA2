@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 import os, sys, re
-from matplotlib.patches import Patch
+from matplotlib.offsetbox import AnchoredText
+#from matplotlib.patches import Patch
 import matplotlib.pyplot as plt
 import pandas
 from scipy.stats import pearsonr
@@ -83,18 +84,21 @@ data_frame = pandas.read_csv(data_frame_file)
 fig = plt.figure(tight_layout=True)
 ax = fig.add_subplot(111)
 # Plot scatter #
-df = data_frame[(data_frame["asb"]=="nonASB")] # nonASB events
-ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#4477AA", alpha=0.5)
-df = data_frame[(data_frame["asb"]=="ASB")] # ASB events
-ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#CC6677", alpha=0.5)
+#df = data_frame[(data_frame["asb"]=="nonASB")] # nonASB events
+#ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#4477AA", alpha=0.5)
+#df = data_frame[(data_frame["asb"]=="ASB")] # ASB events
+#ax.scatter(df["allelic_imbalance"].tolist(), df["impact_score"].tolist(), color="#CC6677", alpha=0.5)
+ax.scatter(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist(), color="#4477AA", alpha=0.5)
 # Get correlation #
 corr = pearsonr(data_frame["allelic_imbalance"].tolist(), data_frame["impact_score"].tolist())
 # Add legend #
-handles = [Patch(color="#CC6677", label="ASB"),
-           Patch(color="#4477AA", label="nonASB"),
-           Patch(color="none", label="R = %.3f" % corr[0]),
-           Patch(color="none", label='$\it{p}$' + " = %.1e" % corr[1])]
-ax.legend(handles=handles, frameon=False, loc="best")
+#handles = [Patch(color="#CC6677", label="ASB"),
+#           Patch(color="#4477AA", label="nonASB"),
+#           Patch(color="none", label="R = %.3f" % corr[0]),
+#           Patch(color="none", label='$\it{p}$' + " = %.1e" % corr[1])]
+#ax.legend(handles=handles, frameon=False, loc="best")
+anchored_text = "R = %.3f\n" % corr[0] + '$\it{p}$' + " = %.1e" % corr[1]
+ax.add_artist(AnchoredText(anchored_text, loc=2, frameon=False))
 # Set x/y labels #
 ax.set_xlabel("allelic imbalance (ChIP-seq)")
 ax.set_ylabel("impact score (MANTA2)")
