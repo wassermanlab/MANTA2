@@ -25,7 +25,7 @@ for file in $(curl -s $url       |
     echo "downloading $file..."
     curl -s -O $url$file
     bed_file=$(ls $file | cut -c 1-8)".bed"
-    gzcat $file | tail -n +2 | awk '{print $1 "\t" ($2 - 1) "\t" $3 "\t" $4 "\t" $5 "\t" $7}' > $bed_file
+    zcat $file | tail -n +2 | awk '{print $1 "\t" ($2 - 1) "\t" $3 "\t" $4 "\t" $5 "\t" $7}' > $bed_file
     gzip $bed_file
     rm $file
 done
