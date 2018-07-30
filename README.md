@@ -1,5 +1,9 @@
 # MANTA2
-The **M**ongoDB for the **AN**alysis of **T**ranscription factor (TF)-binding site (TFBS) **A**lterations (MANTA) was originally created in 2015 to study the impact of regulatory mutations in B-cell lymphomas [(Mathelier et al. 2015)](https://doi.org/10.1186/s13059-015-0648-7). The database stores TFBSs predicted in the human genome by combining ChIP-seq regions from [ReMap](http://remap.cisreg.eu) with [JASPAR](http://jaspar.genereg.net) TF binding profiles, as well as the potential impact scores for all possible single nucleotide variants (SNVs) at these TFBSs. This second release of the database, MANTA2, houses >48 million TFBS predictions for 225 TFs and covers ~8% of the human genome ([hg38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26)).
+The **M**ongoDB for the **AN**alysis of **T**ranscription factor (TF)-binding site (TFBS) **A**lterations (MANTA) was originally created in 2015 to study the impact of regulatory mutations in B-cell lymphomas [(Mathelier et al. 2015)](https://doi.org/10.1186/s13059-015-0648-7). This second release of the database, MANTA2, stores TFBSs predicted in the human genome by combining ChIP-seq regions from [ReMap](http://remap.cisreg.eu) and [JASPAR](http://jaspar.genereg.net) profiles, as well as the potential impact scores for all possible single nucleotide variants (SNVs) at these TFBSs. Specifically, it houses >48 million TFBS predictions for 225 TFs and covers ~8% of the human genome ([hg38](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.26)).
+
+**Availability:** The MANTA2 database hosted by the Wasserman lab can be accessed via a dedicated [web server](http://manta.cmmt.ubc.ca/manta2), and a MongoDB dump is available for download at [Zenodo](https://doi.org/10.5281/zenodo.1044747).
+
+**How to cite:** Fornes, O. *et al*. MANTA2, update of the Mongo database for the analysis of transcription factor binding site alterations. *Sci*. *Data* 5:180141 doi: [10.1038/sdata.2018.141](https://doi.org/10.1038/sdata.2018.141) (2018). 
 
 ## Content
 The repository is organized as follows:
